@@ -49,7 +49,7 @@ class StockResourceTest {
     when(STOCK_SERVICE.find()).thenReturn(Collections.emptyList());
 
     List<StockEntry.WithChange> result = RESOURCE
-        .target("/stock")
+        .target("/api/stock")
         .request()
         .get(new GenericType<List<StockEntry.WithChange>>() {});
 
@@ -64,7 +64,7 @@ class StockResourceTest {
         new StockEntry.WithChange("sku3", 3, -1)));
 
     List<StockEntry.WithChange> result = RESOURCE
-        .target("/stock")
+        .target("/api/stock")
         .request()
         .get(new GenericType<List<StockEntry.WithChange>>() {});
 
@@ -79,7 +79,7 @@ class StockResourceTest {
         .thenReturn(Optional.of(expected));
 
     Response response = RESOURCE
-        .target("/stock/" + expected.getSku())
+        .target("/api/stock/" + expected.getSku())
         .request()
         .get();
 
@@ -94,7 +94,7 @@ class StockResourceTest {
         .thenReturn(Optional.empty());
 
     Response response = RESOURCE
-        .target("/stock/unknownSku")
+        .target("/api/stock/unknownSku")
         .request()
         .get();
 

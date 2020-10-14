@@ -5,6 +5,7 @@ import com.google.inject.Injector;
 
 import de.bsautermeister.configs.LogisticsShopConfig;
 import de.bsautermeister.core.GuiceApplication;
+import de.bsautermeister.core.filters.CorsFilter;
 import de.bsautermeister.resources.StockResource;
 import de.bsautermeister.service.StockService;
 import io.dropwizard.db.PooledDataSourceFactory;
@@ -53,6 +54,10 @@ public class LogisticsShopApp extends GuiceApplication<LogisticsShopConfig> {
 
     @Override
     protected void run(LogisticsShopConfig config, Environment environment, Injector injector) {
+        // filters
+        environment.servlets().addFilter("corsFilter", injector.getInstance(CorsFilter.class))
+            .addMappingForUrlPatterns(null, true, "/api/*");
+
         // resources
         environment.jersey().register(injector.getInstance(StockResource.class));
 

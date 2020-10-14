@@ -18,7 +18,7 @@ import de.bsautermeister.service.StockService;
 import io.swagger.annotations.Api;
 
 @Api(value = "/stock")
-@Path("/stock")
+@Path("/api/stock")
 @Produces(MediaType.APPLICATION_JSON)
 public class StockResource {
 
