@@ -21,6 +21,16 @@ $ java -jar target/logistics-shop-1.0.0.jar db migrate config.yml
 2. Start application with `java -jar target/logistics-shop-1.0.0.jar server config.yml`
 3. To check that your application is running enter url `http://localhost:8080`
 
+### Alternatively deploy via Docker Compose
+
+To run application with _Docker Compose_, run the following command in the root directory where the docker-compose.yml file is located:
+
+`$ docker-compose up`
+
+To finally stop and remove the deployed containers, please run following command:
+
+`$ docker-compose down`
+
 ## Swagger API
 
 The Swagger API can be found under http://localhost:8080/swagger.

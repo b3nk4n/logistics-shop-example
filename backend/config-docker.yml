@@ -1,0 +1,66 @@
+logging:
+  level: INFO
+  loggers:
+    de.bsautermeister: DEBUG
+
+stock:
+  refreshInterval: 3 minutes
+
+shopify:
+  subDomain: logistikbroker-demo
+  accessToken: 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
+
+database:
+  # the name of your JDBC driver
+  driverClass: org.postgresql.Driver
+
+  # the username
+  user: postgres
+
+  # the password
+  password: justAn0th3rS3cr3t
+
+  # the JDBC URL
+  url: jdbc:postgresql://db:5432/postgres
+
+  # any properties specific to your JDBC driver:
+  properties:
+    charSet: UTF-8
+
+  # the maximum amount of time to wait on an empty pool before throwing an exception
+  maxWaitForConnection: 1s
+
+  # the SQL query to run when validating a connection's liveness
+  validationQuery: "SELECT 1"
+
+  # the timeout before a connection validation queries fail
+  validationQueryTimeout: 3s
+
+  # the minimum number of connections to keep open
+  minSize: 8
+
+  # the maximum number of connections to keep open
+  maxSize: 32
+
+  # whether or not idle connections should be validated
+  checkConnectionWhileIdle: false
+
+  # the amount of time to sleep between runs of the idle connection validation, abandoned cleaner and idle pool resizing
+  evictionInterval: 10s
+
+  # the minimum amount of time an connection must sit idle in the pool before it is eligible for eviction
+  minIdleTime: 1 minute
+
+swagger:
+  resourcePackage: de.bsautermeister.resources
+  scan: true
+  info:
+    version: "1.0.0"
+    title: "Stocks API"
+    description: "A simple API used for expose READ operation on the local stock of products"
+    termsOfService: "http://swagger.io/terms/"
+    contact:
+      name: "API Support"
+      email: support@bsautermeister.de
+    license:
+      name: "Benjamin Sautermeister"
