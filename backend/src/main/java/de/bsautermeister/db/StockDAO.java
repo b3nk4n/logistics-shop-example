@@ -21,27 +21,29 @@ public interface StockDAO {
   /**
    * Upserts an entry.
    * @param sku The SKU of the product.
+   * @param title The title of the product.
    * @param amount The amount in stock.
    */
-  default void upsert(String sku, long amount) {
-    upsert(sku, amount, 0);
+  default void upsert(String sku, String title, long amount) {
+    upsert(sku, title, amount, 0);
   }
 
   /**
    * Upserts an entry.
    * @param sku The SKU of the product.
+   * @param title The title of the product.
    * @param amount The amount in stock.
    * @param change The change by default (usually 0).
    */
-  @SqlUpdate("INSERT INTO stocks (sku, amount, change) VALUES (:sku, :amount, :change)"
-                 + "ON CONFLICT(sku) DO UPDATE SET amount = excluded.amount, change = excluded.amount - stocks.amount")
-  void upsert(@Bind("sku") String sku, @Bind("amount") long amount, @Bind("change") long change);
+  @SqlUpdate("INSERT INTO stocks (sku, title, amount, change) VALUES (:sku, :title, :amount, :change)"
+                 + "ON CONFLICT(sku) DO UPDATE SET title = excluded.title, amount = excluded.amount, change = excluded.amount - stocks.amount")
+  void upsert(@Bind("sku") String sku, @Bind("title") String title, @Bind("amount") long amount, @Bind("change") long change);
 
   /**
    * Finds all products in stock ordered by SKU.
    * @return The list of products in stock.
    */
-  @SqlQuery("SELECT sku, amount, change FROM stocks ORDER BY sku")
+  @SqlQuery("SELECT sku, title, amount, change FROM stocks ORDER BY sku")
   List<StockEntry.WithChange> find();
 
   /**
@@ -49,7 +51,7 @@ public interface StockDAO {
    * @param sku The SKU of the product.
    * @return The entry in stock of present.
    */
-  @SqlQuery("SELECT sku, amount, change FROM stocks WHERE sku = :sku")
+  @SqlQuery("SELECT sku, title, amount, change FROM stocks WHERE sku = :sku")
   Optional<StockEntry.WithChange> findBySku(@Bind("sku") String sku);
 
   /**

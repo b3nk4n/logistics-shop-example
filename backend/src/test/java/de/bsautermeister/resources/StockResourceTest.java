@@ -59,9 +59,9 @@ class StockResourceTest {
   @Test
   void findStock_forNonEmptyResult() {
     when(STOCK_SERVICE.find()).thenReturn(Lists.newArrayList(
-        new StockEntry.WithChange("sku1", 1, 0),
-        new StockEntry.WithChange("sku2", 2, 1),
-        new StockEntry.WithChange("sku3", 3, -1)));
+        new StockEntry.WithChange("sku1", "title1", 1, 0),
+        new StockEntry.WithChange("sku2", "title2", 2, 1),
+        new StockEntry.WithChange("sku3", "title3", 3, -1)));
 
     List<StockEntry.WithChange> result = RESOURCE
         .target("/api/stock")
@@ -73,7 +73,7 @@ class StockResourceTest {
 
   @Test
   void testFindStock_forHit() throws IOException {
-    final StockEntry.WithChange expected = new StockEntry.WithChange("sku1", 1, 0);
+    final StockEntry.WithChange expected = new StockEntry.WithChange("sku1", "title1", 1, 0);
 
     when(STOCK_SERVICE.findBySku(eq("sku1")))
         .thenReturn(Optional.of(expected));

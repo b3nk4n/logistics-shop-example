@@ -13,6 +13,7 @@ public class StockEntryWithMetadataMapper implements RowMapper<StockEntry.WithCh
   public StockEntry.WithChange map(ResultSet rs, StatementContext ctx) throws SQLException {
     return new StockEntry.WithChange(
         rs.getString("sku"),
+        rs.getString("title"),
         rs.getInt("amount"),
         rs.getInt("change")
     );

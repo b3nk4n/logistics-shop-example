@@ -3,7 +3,6 @@ package de.bsautermeister.service;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
-import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
@@ -104,9 +103,11 @@ public class StockServiceImpl implements StockService {
 
   private void upsertVariants(List<ShopifyVariant> variants) {
     Set<StockEntry> upsertEntries = variants.stream()
-        .map(variant -> new StockEntry(variant.getSku(),
+        .map(variant -> new StockEntry(
+            variant.getSku(),
+            variant.getTitle(),
             variant.getInventoryQuantity() != null ? variant.getInventoryQuantity() : 0L))
         .collect(Collectors.toSet());
-    upsertEntries.forEach(entry -> stockDAO.upsert(entry.getSku(), entry.getAmount()));
+    upsertEntries.forEach(entry -> stockDAO.upsert(entry.getSku(), entry.getTitle(), entry.getAmount()));
   }
 }

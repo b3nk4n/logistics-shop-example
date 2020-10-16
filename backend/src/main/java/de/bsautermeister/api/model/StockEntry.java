@@ -19,6 +19,12 @@ public class StockEntry {
   @JsonProperty("sku")
   private final String sku;
 
+  @ApiModelProperty(value = "The item title", example = "Football")
+  @NotBlank
+  @Length(max=255)
+  @JsonProperty("title")
+  private final String title;
+
   @ApiModelProperty(value = "The amount on stock", example = "99")
   @Min(0)
   @JsonProperty("amount")
@@ -26,8 +32,10 @@ public class StockEntry {
 
   @JsonCreator
   public StockEntry(@JsonProperty("sku") String sku,
+                    @JsonProperty("title") String title,
                     @JsonProperty("amount") long amount) {
     this.sku = sku;
+    this.title = title;
     this.amount = amount;
   }
 
@@ -42,12 +50,15 @@ public class StockEntry {
 
     if (amount != that.amount)
       return false;
-    return sku != null ? sku.equals(that.sku) : that.sku == null;
+    if (sku != null ? !sku.equals(that.sku) : that.sku != null)
+      return false;
+    return title != null ? title.equals(that.title) : that.title == null;
   }
 
   @Override
   public int hashCode() {
     int result = sku != null ? sku.hashCode() : 0;
+    result = 31 * result + (title != null ? title.hashCode() : 0);
     result = 31 * result + (int) (amount ^ (amount >>> 32));
     return result;
   }
@@ -56,12 +67,17 @@ public class StockEntry {
   public String toString() {
     return "StockEntry{" +
         "sku='" + sku + '\'' +
+        ", title='" + title + '\'' +
         ", amount=" + amount +
         '}';
   }
 
   public String getSku() {
     return sku;
+  }
+
+  public String getTitle() {
+    return title;
   }
 
   public long getAmount() {
@@ -78,9 +94,10 @@ public class StockEntry {
     private final long change;
 
     public WithChange(@JsonProperty("sku") String sku,
+                      @JsonProperty("title") String title,
                       @JsonProperty("amount") long amount,
                       @JsonProperty("change") long change) {
-      super(sku, amount);
+      super(sku, title, amount);
       this.change = change;
     }
 

@@ -11,6 +11,9 @@
       <column name="sku" type="varchar(255)">
         <constraints primaryKey="true" nullable="false"/>
       </column>
+      <column name="title" type="varchar(255)">
+        <constraints nullable="false"/>
+      </column>
       <column name="amount" type="int">
         <constraints nullable="false"/>
       </column>

@@ -1,4 +1,7 @@
+import PropTypes from 'prop-types';
 import React from "react";
+
+import './indicatorIcon.css';
 
 export const IconType = Object.freeze({
     default: {
@@ -17,9 +20,17 @@ export const IconType = Object.freeze({
 
 export default function IndicatorIcon({ iconType }) {
     return (
-        <svg width="1em" height="1em" viewBox="0 0 16 16" className={`bi bi-dash-square-fill ${iconType.colorClass}`}
+        <svg width="1em" height="1em" viewBox="0 0 16 16" className={`bi bi-dash-square-fill icon ${iconType.colorClass}`}
              fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path fill-rule="evenodd" d={iconType.path}/>
         </svg>
     );
 }
+
+IndicatorIcon.propTypes = {
+    iconType: PropTypes.shape({
+        path: PropTypes.string,
+        colorClass: PropTypes.string
+    })
+}
+

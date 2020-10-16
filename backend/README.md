@@ -27,6 +27,10 @@ To run application with _Docker Compose_, run the following command in the root 
 
 `$ docker-compose up`
 
+Or if the image needs to be updated with the latest changes:
+
+`$ docker-compose up --build dw`
+
 To finally stop and remove the deployed containers, please run following command:
 
 `$ docker-compose down`

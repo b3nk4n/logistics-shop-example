@@ -19,7 +19,13 @@ export default class App extends Component {
 
     render() {
         return (
-            <StockList items={this.state.items} />
+            <div className="container">
+                <div className="row">
+                    <div className="col">
+                        <StockList items={this.state.items} />
+                    </div>
+                </div>
+            </div>
         );
     }
 }

@@ -17,7 +17,7 @@ import de.bsautermeister.api.model.StockEntry;
 import de.bsautermeister.service.StockService;
 import io.swagger.annotations.Api;
 
-@Api(value = "/stock")
+@Api("Stocks API")
 @Path("/api/stock")
 @Produces(MediaType.APPLICATION_JSON)
 public class StockResource {

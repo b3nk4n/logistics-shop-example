@@ -64,7 +64,7 @@ class StockServiceTest {
     assertThat(testSkuCache).hasSize(2);
     assertThat(testSkuCache).contains("sku1", "sku2");
 
-    verify(stockDAO, times(2)).upsert(anyString(), anyLong());
+    verify(stockDAO, times(2)).upsert(anyString(), anyString(), anyLong());
     verify(stockDAO, never()).delete(anySet());
   }
 
@@ -93,7 +93,7 @@ class StockServiceTest {
     assertThat(testSkuCache).hasSize(3);
     assertThat(testSkuCache).contains("sku2", "sku3", "sku4");
 
-    verify(stockDAO, times(6)).upsert(anyString(), anyLong());
+    verify(stockDAO, times(6)).upsert(anyString(), anyString(), anyLong());
     verify(stockDAO, times(1)).delete(anySet());
   }
 
@@ -112,8 +112,8 @@ class StockServiceTest {
   void findForNonEmptyResult() {
     when(stockDAO.find()).thenReturn(
         Lists.newArrayList(
-            new StockEntry.WithChange("sku1", 1L, 0L),
-            new StockEntry.WithChange("sku2", 2L, 0L)));
+            new StockEntry.WithChange("sku1", "title1", 1L, 0L),
+            new StockEntry.WithChange("sku2", "title2", 2L, 0L)));
 
     List<StockEntry.WithChange> result = stockService.find();
 
@@ -139,7 +139,7 @@ class StockServiceTest {
 
   @Test
   void findBySkuForHit() {
-    final StockEntry.WithChange testEntry = new StockEntry.WithChange("sku1", 1L, 0L);
+    final StockEntry.WithChange testEntry = new StockEntry.WithChange("sku1", "title1", 1L, 0L);
 
     when(stockDAO.findBySku(eq(testEntry.getSku()))).thenReturn(Optional.of(testEntry));
 
