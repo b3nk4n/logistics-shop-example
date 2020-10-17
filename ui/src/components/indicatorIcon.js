@@ -22,7 +22,7 @@ export default function IndicatorIcon({ iconType }) {
     return (
         <svg width="1em" height="1em" viewBox="0 0 16 16" className={`bi bi-dash-square-fill icon ${iconType.colorClass}`}
              fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path fill-rule="evenodd" d={iconType.path}/>
+            <path fillRule="evenodd" d={iconType.path}/>
         </svg>
     );
 }

@@ -8,8 +8,8 @@ import './stockList.css';
 export default function StockList({ items }) {
     return (
         <>
-            {items.map((item) => (
-                <StockListItem item={item}/>
+            {items.map((item, index) => (
+                <StockListItem key={index} item={item}/>
             ))}
         </>
     );
