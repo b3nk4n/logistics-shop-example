@@ -22,5 +22,5 @@ function getIconType(change) {
 }
 
 ChangeIndicator.propTypes = {
-    change: PropTypes.number
+    change: PropTypes.number.isRequired
 };

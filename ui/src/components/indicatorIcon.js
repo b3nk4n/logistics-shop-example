@@ -29,8 +29,8 @@ export default function IndicatorIcon({ iconType }) {
 
 IndicatorIcon.propTypes = {
     iconType: PropTypes.shape({
-        path: PropTypes.string,
-        colorClass: PropTypes.string
+        path: PropTypes.string.isRequired,
+        colorClass: PropTypes.string.isRequired
     })
 }
 
