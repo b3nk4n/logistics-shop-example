@@ -5,19 +5,19 @@ import ChangeIndicator from './changeIndicator';
 
 import './stockListItem.css';
 
-export default function StockListItem({ item }) {
+export default function StockListItem({ sku, title, amount, change }) {
     return (
         <div className="card">
             <div className="card-body item-body">
                 <div className="container">
                     <div className="row">
                         <div className="col-9">
-                            <h5 className="card-title">{item.title}</h5>
-                            <p className="card-text">{`SKU: ${item.sku}`}</p>
+                            <h5 className="card-title">{title}</h5>
+                            <p className="card-text">{`SKU: ${sku}`}</p>
                         </div>
                         <div className="col-3 stats">
-                            <span>In Stock:</span>{' '}<strong>{item.amount}</strong>
-                            <ChangeIndicator change={item.change} />
+                            <span>In Stock:</span>{' '}<strong>{amount}</strong>
+                            <ChangeIndicator change={change} />
                         </div>
                     </div>
                 </div>
@@ -27,10 +27,8 @@ export default function StockListItem({ item }) {
 }
 
 StockListItem.propTypes = {
-    item: PropTypes.shape({
-        sku: PropTypes.string.isRequired,
-        title: PropTypes.string.isRequired,
-        amount: PropTypes.number.isRequired,
-        change: PropTypes.number.isRequired
-    })
+    sku: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    amount: PropTypes.number.isRequired,
+    change: PropTypes.number.isRequired
 };

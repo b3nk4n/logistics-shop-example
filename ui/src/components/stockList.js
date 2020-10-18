@@ -18,7 +18,13 @@ export default function StockList({ items }) {
     return (
         <>
             {items.map((item, index) => (
-                <StockListItem key={index} item={item}/>
+                <StockListItem
+                    key={index}
+                    sku={item.sku}
+                    title={item.title}
+                    amount={item.amount}
+                    change={item.change}
+                />
             ))}
             {items.length === 0 && (
                 <div className="empty-results">

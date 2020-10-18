@@ -11,10 +11,8 @@ const Template = (args) => <StockListItem {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
- item: {
-   title: 'Title',
-   sku: 'ABCDEFGH12345',
-   amount: 23,
-   change: 5
- }
+  title: 'Title',
+  sku: 'ABCDEFGH12345',
+  amount: 23,
+  change: 5
 };
