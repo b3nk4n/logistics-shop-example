@@ -8,7 +8,7 @@ In the project directory, you can run:
 
 `$ yarn start`
 
-Runs the app in the development mode on [http://localhost:3000](http://localhost:3000).
+The app runs in the development mode on [http://localhost:3000](http://localhost:3000).
 
 ### Running Storybook
 
@@ -18,11 +18,15 @@ This project uses [Storybook](https://storybook.js.org/) at its component catalo
 $ yarn storybook
 ```
 
+Storybook will then run on [http://localhost:6006/](http://localhost:6006/).
+
 ### Running tests
 
 To launch the test runner in the interactive watch mode, please run:
 
 `$ yarn test`
+
+
 
 ## Troubleshooting
 
