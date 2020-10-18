@@ -1,3 +1,5 @@
-.search {
-    margin-bottom: 8px;
+.empty-results {
+    text-align: center;
+    margin: 32px;
 }
+
